@@ -1,0 +1,31 @@
+<%-include('header')%>
+<div class="all-articles">
+  <h2>Article Update</h2>
+</div>
+<div class="detail-form">
+  <form class="update-form" action="/articles/<%= article.id%>/edit" method="POST">
+    <input
+      type="text"
+      name="title"
+      placeholder="Heading"
+      value="<%= article.title%>"
+    />
+    <textarea
+      name="description"
+      rows="20"
+      cols="50"
+
+    ><%= article.description%>
+    </textarea>
+    <input
+      type="text"
+      name="author"
+      placeholder="author name"
+      value="<%=article.author%>"
+    />
+    <div class="add-comment">
+      <input class="input-btn" type="submit" value="Update" />
+    </div>
+  </form>
+</div>
+<%-include('footer')%>

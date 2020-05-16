@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Libre+Caslon+Text&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="articles">
+    <div class="all-articles">
+      <h2>Articles</h2>
+      <a href="/articles/new" class="index-btn index-btn1"><span class="explore-articles">New Article</span></a>
+    </div>
+    <% articles.forEach(elem => {%>
+    <div class="articles-section shine">
+      <a class="articles-title" href="articles/<%= elem.id%>"
+        ><p><%= elem.title%></p></a>     
+    </div>
+    <% })%>
+    <div class="home-btn">
+        <a href="/index"><button class="btn">Home</button></a>
+    </div>
+  </body>
+</html>
