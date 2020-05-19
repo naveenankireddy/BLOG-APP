@@ -9,7 +9,8 @@ var userSchema = new Schema({
         type:String,
         minlength:4
     },
-    githubId:{String}
+    githubId: String,
+    googleId:String,
 },{timestamps:true});
 
 userSchema.pre("save",function(next) {

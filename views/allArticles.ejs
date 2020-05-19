@@ -14,7 +14,6 @@
   <body class="articles">
     <div class="all-articles">
       <h2>Articles</h2>
-      <a href="/articles/new" class="index-btn index-btn1"><span class="explore-articles">New Article</span></a>
     </div>
     <% articles.forEach(elem => {%>
     <div class="articles-section shine">
@@ -22,6 +21,10 @@
         ><p><%= elem.title%></p></a>     
     </div>
     <% })%>
+    <div class="index-btn2">
+      <a href="/articles/new" class="index-btn  index-btn1"><span class="explore-articles">New Article</span></a>
+
+    </div>
     <div class="home-btn">
         <a href="/index"><button class="btn">Home</button></a>
     </div>

@@ -1,25 +1,25 @@
-var createError = require("http-errors");//create the erroe
-var express = require("express");//
+var createError = require("http-errors"); //create the erroe
+var express = require("express"); //
 var path = require("path");
 var cookieParser = require("cookie-parser");
-var logger = require("morgan");//logs you some information 
+var logger = require("morgan"); //logs you some information
 var mongoose = require("mongoose");
 var session = require("express-session");
 var MongoStore = require("connect-mongo")(session);
 
 //passport OAth
-
+var passport = require("passport");
+require("dotenv").config();
+require("./modules/passport");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var articlesRouter = require("./routes/articles");
 
-
-
 //connecting to mongodb
 mongoose.connect(
   "mongodb://localhost/Article",
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
   (err) => {
     console.log(err ? err : "connected to mongoDB");
   }
@@ -37,15 +37,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-
 app.use(
   session({
-    secret:"keyboard cat",
-    resave:true,
-    saveUninitialized:false,
-    store:new MongoStore({mongooseConnection:mongoose.connection})
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
   })
-)
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
